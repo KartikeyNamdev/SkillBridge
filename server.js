@@ -1,5 +1,6 @@
 // Import necessary modules
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -13,7 +14,7 @@ const app = express();
 
 // Middleware setup
 app.use(cors()); // Enable CORS for all routes
-app.use(express.json()); // Parse JSON bodies
+app.use(bodyParser.json()); // Parse JSON bodies
 
 // Database connection
 mongoose
@@ -23,7 +24,7 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Database connection error:", err));
-
+// console.log(router);
 // Routes
 app.use("/api/auth", router); // Authentication routes
 

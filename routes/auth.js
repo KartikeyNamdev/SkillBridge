@@ -4,6 +4,11 @@ const {
   login,
   getUserProfile,
 } = require("../controller/authController");
+
+// import  {register,
+//   login,
+//   getUserProfile} from ("../controller/authController")
+
 const { protect } = require("../middlewares/authMiddleware");
 
 const router = express.Router();

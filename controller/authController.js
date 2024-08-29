@@ -12,14 +12,15 @@ const userSchema = zod.object({
 });
 
 const register = async (req, res) => {
+  // let user;
   try {
     const { name, password, email, role } = userSchema.parse(req.body);
 
-    let user = await user.findOne({ email });
+    let user = await User.findOne({ email });
 
-    if (user) {
-      return res.status(400).json({ message: "User already exists" });
-    }
+    // if (user) {
+    //   return res.status(401).json({ message: "User already exists" });
+    // }
 
     user = new User({ name, password, email, role });
     await user.save();
@@ -62,4 +63,4 @@ const getUserProfile = async (req, res) => {
 // Implement registration and login logic in authController.js.
 // Validate input using Zod.
 //login view courses,post courses, view internship and add internship
-module.export = { register, login, getUserProfile };
+module.exports = { register, login, getUserProfile };
