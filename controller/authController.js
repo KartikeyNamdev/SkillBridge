@@ -16,20 +16,21 @@ const register = async (req, res) => {
   try {
     const { name, password, email, role } = userSchema.parse(req.body);
 
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ name });
+    // console.log(user);
 
     // if (user) {
     //   return res.status(401).json({ message: "User already exists" });
     // }
-
     user = new User({ name, password, email, role });
+    console.log(user);
     await user.save();
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET
     );
-    res.json({ token }).status(201);
+    res.json({ token }).send("User created successfully").status(201);
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
@@ -44,7 +45,7 @@ const login = async (req, res) => {
       { id: user._id, role: user.role },
       process.env.JWT_SECRET
     );
-    res.json({ token }).status(200);
+    res.json({ token }).send("User login successfully").status(200);
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
