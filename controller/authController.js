@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Course = require("../models/course");
 const jwt = require("jsonwebtoken");
 const zod = require("zod");
 
@@ -12,18 +13,15 @@ const userSchema = zod.object({
 });
 
 const register = async (req, res) => {
-  // let user;
   try {
     const { name, password, email, role } = userSchema.parse(req.body);
 
-    let user = await User.findOne({ name });
-    // console.log(user);
-
-    // if (user) {
-    //   return res.status(401).json({ message: "User already exists" });
-    // }
+    let user = await User.findOne({ name, password });
+    if (user) {
+      return res.status(401).json({ message: "User already exists" });
+    }
     user = new User({ name, password, email, role });
-    console.log(user);
+
     await user.save();
 
     const token = jwt.sign(
@@ -39,7 +37,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, password });
     if (!user) return res.status(404).json({ msg: "User not found" });
     const token = jwt.sign(
       { id: user._id, role: user.role },

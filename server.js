@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const router = require("./routes/auth"); // Assuming you have an auth route file
+const router = require("./routes/routes"); // Assuming you have an auth route file
 
 // Initialize environment variables
 dotenv.config();
@@ -26,7 +26,7 @@ mongoose
   .catch((err) => console.log("Database connection error:", err));
 // console.log(router);
 // Routes
-app.use("/api/auth", router); // Authentication routes
+app.use("/api", router); // Authentication routes
 
 // Root route
 app.get("/", (req, res) => {
