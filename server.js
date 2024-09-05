@@ -4,7 +4,18 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const router = require("./routes/routes"); // Assuming you have an auth route file
+
+// Import routes
+const routerAdmin = require("./routes/adminRoute"); // Assuming you have an auth route file
+const routerUser = require("./routes/userRoute"); // Assuming you have an auth route file
+const {
+  register,
+  login,
+  getUserProfile,
+  myCourse,
+  myInternship,
+} = require("./controller/authController");
+const { protect } = require("./middlewares/authMiddleware");
 
 // Initialize environment variables
 dotenv.config();
@@ -25,13 +36,22 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Database connection error:", err));
 // console.log(router);
-// Routes
-app.use("/api", router); // Authentication routes
 
 // Root route
 app.get("/", (req, res) => {
   res.send("Welcome to the API");
 });
+
+//common
+app.post("/register", register);
+app.post("/login", login);
+app.get("/profile", protect, getUserProfile);
+app.get("/courses", protect, myCourse);
+app.get("/internships", protect, myInternship);
+
+// Routes
+app.use("/admin", routerAdmin); // Authentication routes for admin
+app.use("/user", routerUser); // Authentication routes for user
 
 // Error handling middleware
 app.use((err, req, res, next) => {

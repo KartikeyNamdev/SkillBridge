@@ -18,6 +18,13 @@
 
 **SKILL BRIDGE** is built to transform vocational education by integrating cutting-edge solutions like Virtual Reality (VR) training modules, AI-powered career guidance, digital skill badges, mobile training labs, and online apprenticeship platforms. This project is part of the Smart India Hackathon initiative and aims to provide a comprehensive solution for skill development.
 
+It need to support 2 types of user-
+a.Admin
+b.Student
+
+Admins are allowed to signup,create courses,create internships,give problems for practice.
+Users can Signup, view courses,purchase courses, view internships, solve problems on code editor and chat to our bot for career guidance.
+
 ## **Features**
 
 - **Virtual Reality (VR) Training Modules**: Immersive training experiences that simulate real-world scenarios.
@@ -126,3 +133,99 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 For any questions or inquiries, please reach out to:
 
 - **Kartikey Namdev**: email@example.com
+
+## Routes
+
+### Admin Routes:
+
+- POST /admin/register
+  Description: Creates a new admin account.
+  Input Body: { username: 'admin', password: 'pass' }
+  Output: { message: 'Admin created successfully' }
+
+- POST /admin/login
+  Description: Logs in an admin account.
+  Input Body: { username: 'admin', password: 'pass' }
+  Output: { token: 'your-token' }
+
+- POST /admin/courses
+  Description: Creates a new course.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }, Body: { title:
+  'course title', description: 'course description', price: 100, imageLink:
+  'https://linktoimage.com' }
+  Output: { message: 'Course created successfully', courseId: "new course id" }
+
+- POST /admin/internship
+  Description: Creates a new internship.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }, Body: { title:
+  'course title', description: 'course description', price: 100, imageLink:
+  'https://linktoimage.com' }
+  Output: { message: 'Course created successfully', courseId: "new course id" }
+- GET /admin/courses
+  Description: Returns all the courses.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { courses: [ { id: 1, title: 'course title', description: 'course
+  description', price: 100, imageLink: 'https://linktoimage.com', published:
+  true }, ... ] }
+
+  - GET /admin/internship
+    Description: Returns all the internship.
+    Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+    Output: { courses: [ { id: 1, title: 'course title', description: 'course
+    description', price: 100, imageLink: 'https://linktoimage.com', published:
+    true }, ... ] }
+
+### User routes
+
+Users can Signup, view courses,purchase courses, view internships, solve problems
+on code editor and chat to our bot for career guidance.
+
+- POST /user/register
+  Description: Creates a new user account.
+  Input: { username: 'user', password: 'pass' }
+  Output: { message: 'User created successfully' }
+  ////////
+- POST /user/login
+  Description: Logs in a user account.
+  Input: { username: 'user', password: 'pass' }
+  Output: { token: 'your-token' }
+  //////////
+- GET /users/courses
+  Description: Lists all the courses.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { courses: [ { id: 1, title: 'course title', description: 'course
+  description', price: 100, imageLink: 'https://linktoimage.com', published:
+  true }, ... ] }
+  /////////////
+- POST /users/courses/:courseId
+  Description: Purchases a course. courseId in the URL path should be replaced
+  with the ID of the course to be purchased.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { message: 'Course purchased successfully' }
+  /////////////
+- GET /users/purchasedCourses
+  Description: Lists all the courses purchased by the user.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { purchasedCourses: [ { id: 1, title: 'course title', description:
+  'course description', price: 100, imageLink: 'https://linktoimage.com',
+  published: true }, ... ] }
+  ///////////
+- GET /users/internship
+  Description: Lists all the internship.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { internship: [ { id: 1, title: 'course title', description: 'course
+  description', price: 100, imageLink: 'https://linktoimage.com', published:
+  true }, ... ] }
+  ///////////
+- POST /users/internship/:internshipId
+  Description: Purchases a course. courseId in the URL path should be replaced
+  with the ID of the course to be purchased.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { message: 'Course purchased successfully' }
+  ////////////
+- GET /users/myinternship
+  Description: Lists all the internship purchased by the user.
+  Input: Headers: { 'Authorization': 'Bearer <your-token>' }
+  Output: { myinternship: [ { id: 1, title: 'course title', description:
+  'course description', price: 100, imageLink: 'https://linktoimage.com',
+  published: true }, ... ] }

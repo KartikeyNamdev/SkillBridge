@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 
-const CourseSchema = new mongoose.Schema({
+const InternshipSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  price: { type: Number, required: true },
   duration: { type: String, required: true },
   educator: {
     type: mongoose.Schema.Types.ObjectId,
@@ -13,4 +12,4 @@ const CourseSchema = new mongoose.Schema({
   students: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
-module.exports = mongoose.model("Course", CourseSchema);
+module.exports = mongoose.model("Internship", InternshipSchema);
