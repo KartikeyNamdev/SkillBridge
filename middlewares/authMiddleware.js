@@ -1,26 +1,24 @@
 const jwt = require("jsonwebtoken");
 
 const protect = async (req, res, next) => {
-  let token;
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
+  // let token;
+  if (req.headers.authorization) {
+    console.log("Admin middleware is working");
     try {
-      token = req.headers.authorization.split[" "][1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const token = req.headers.authorization;
+      const words = token.split(" "); // ["Bearer", "token"]
+      const jwtToken = words[1]; // token
+      const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET);
+      console.log(decoded);
 
-      req.user = await User.findById(decoded.id).select("-password");
-      next();
+      if (decoded) {
+        next();
+      } else {
+        res.json({ message: "Login failed" }).status(411);
+      }
     } catch (error) {
       res.status(401).json({ message: "Not authorized, token failed" });
     }
-  }
-
-  if (!token) {
-    return res.status(401).json({
-      message: "Not authorized, no token",
-    });
   }
 };
 

@@ -53,8 +53,12 @@ const login = async (req, res) => {
 
 const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    // console.log("User profile error");
+    console.log(req.body.id);
+    const user = await User.findById(req.body.id);
+    console.log(user);
     res.status(200).json(user);
+
     return;
   } catch (error) {
     res.status(500).json({ msg: error.message });
