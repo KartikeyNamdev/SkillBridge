@@ -6,6 +6,7 @@ import CoursesPage from "./components/CoursesPage";
 import ApprenticeshipPage from "./components/ApprenticeshipPage";
 import LoginSignupPage from "./components/LoginSignupPage";
 import LeetCodeUI from "./components/LeetCodeUI";
+import ProfilePage from "./components/ProfilePage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/apprenticeship" element={<ApprenticeshipPage />} />
         <Route path="/practice" element={<LeetCodeUI />} />
         <Route path="/login" element={<LoginSignupPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </Router>
   );

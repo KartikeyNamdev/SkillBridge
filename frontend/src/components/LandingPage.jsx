@@ -56,6 +56,14 @@ const LandingPage = () => {
               >
                 Login/Signup
               </Link>
+              <Link
+                to="/profile"
+                
+                className="text-indigo-600 hover:text-indigo-800"
+              >
+                ___Profile
+                                        
+              </Link>
             </li>
           </ul>
         </nav>
