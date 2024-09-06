@@ -3,8 +3,9 @@ const zod = require("zod");
 
 const { protect } = require("../middlewares/authMiddleware");
 const Course = require("../models/course");
+const internship = require("../models/internship");
 
-const router = express.Router();
+const adminRouter = express.Router();
 
 const courseSchema = zod.object({
   title: zod.string(),
@@ -23,8 +24,9 @@ const internSchema = zod.object({
 });
 
 //admin creation course
-router.post("/course", async (req, res) => {
+adminRouter.post("/course", async (req, res) => {
   // Implement course creation logic
+  console.log("adminRouter working");
   const { title, description, duration, price, educator, students } =
     courseSchema.parse(req.body);
 
@@ -36,6 +38,7 @@ router.post("/course", async (req, res) => {
     educator,
     students,
   });
+  console.log(course);
   await course.save();
   res.json({
     message: "Course created successfully",
@@ -44,16 +47,15 @@ router.post("/course", async (req, res) => {
 });
 
 //admin creation internship
-router.post("/internship", async (req, res) => {
+adminRouter.post("/internship", async (req, res) => {
   // Implement internship creation logic
-  const { title, description, duration, stipend, educator, students } =
+  const { title, description, duration, educator, students } =
     internSchema.parse(req.body);
 
-  const internship = new Internship({
+  const internship = new internship({
     title,
     description,
     duration,
-    stipend,
     educator,
     students,
   });
@@ -67,4 +69,4 @@ router.post("/internship", async (req, res) => {
 
 //common route
 
-module.exports = router;
+module.exports = adminRouter;

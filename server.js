@@ -50,8 +50,8 @@ app.get("/courses", protect, myCourse);
 app.get("/internships", protect, myInternship);
 
 // Routes
-app.use("/admin", routerAdmin); // Authentication routes for admin
-app.use("/user", routerUser); // Authentication routes for user
+app.use("/admin", protect, routerAdmin); // Authentication routes for admin
+app.use("/user", protect, routerUser); // Authentication routes for user
 
 // Error handling middleware
 app.use((err, req, res, next) => {

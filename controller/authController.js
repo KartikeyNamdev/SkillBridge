@@ -22,6 +22,7 @@ const register = async (req, res) => {
       return res.status(401).json({ message: "User already exists" });
     }
     user = new User({ name, password, email, role });
+    console.log(user);
 
     await user.save();
 
@@ -67,8 +68,10 @@ const getUserProfile = async (req, res) => {
 
 const myCourse = async (req, res) => {
   try {
+    console.log("myCourse");
     const myCourse = await Course.find({});
     res.json(myCourse);
+    console.log(myCourse);
   } catch (e) {
     res.status(500).json({ msg: e.message });
   }
@@ -76,7 +79,9 @@ const myCourse = async (req, res) => {
 
 const myInternship = async (req, res) => {
   try {
+    console.log("Internship");
     const myInternship = await Internship.find({});
+    console.log(myInternship);
     res.json(myInternship);
   } catch (e) {
     res.status(500).json({ msg: e.message });
