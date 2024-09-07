@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
+
 // Import routes
 const routerAdmin = require("./routes/adminRoute"); // Assuming you have an auth route file
 const routerUser = require("./routes/userRoute"); // Assuming you have an auth route file
@@ -18,8 +19,7 @@ const {
 const { protect } = require("./middlewares/authMiddleware");
 
 // Initialize environment variables
-dotenv.config();
-
+require("dotenv").config();
 // Initialize Express app
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(bodyParser.json()); // Parse JSON bodies
 
 // Database connection
 mongoose
-  .connect(process.env.MONGO_URL, {
+  .connect("mongodb+srv://kartikeynamdev:vinayak2003@mycluster.hjnalxi.mongodb.net/", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

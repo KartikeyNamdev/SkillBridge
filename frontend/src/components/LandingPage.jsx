@@ -19,7 +19,7 @@ const LandingPage = () => {
       <header className="p-6 flex justify-between items-center">
         <h1 className="text-3xl font-bold text-indigo-700">SkillBridge</h1>
         <nav>
-          <ul className="flex space-x-6">
+          <ul className="flex space-x-7">
             <li>
               <Link to="/" className="text-indigo-600 hover:text-indigo-800">
                 Home
@@ -58,10 +58,10 @@ const LandingPage = () => {
               </Link>
               <Link
                 to="/profile"
-                
-                className="text-indigo-600 hover:text-indigo-800"
+                // style={{padding:2px}}
+                className="text-indigo-600 hover:text-indigo-800 "
               >
-                ___Profile
+                 Profile
                                         
               </Link>
             </li>
@@ -134,7 +134,7 @@ const LandingPage = () => {
             </CardHeader>
             <CardContent>
               <p className="mb-4">
-                Sharpen your coding skills with our LeetCode-style platform
+                Sharpen your coding skills with our Coding-style platform
                 featuring diverse challenges.
               </p>
               <Button variant="outline" className="flex items-center">
@@ -142,6 +142,58 @@ const LandingPage = () => {
               </Button>
             </CardContent>
           </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <BookOpen className="mr-2 text-indigo-600" />
+                Assessments
+              </CardTitle>
+              <CardDescription>Comprehensive learning paths</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4">
+                Offers a variety of Assessments to check your practical skills.
+              </p>
+              <Button variant="outline" className="flex items-center">
+                Buy course to get Assessments <ChevronRight className="ml-2" />
+              </Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <BookOpen className="mr-2 text-indigo-600" />
+                AI Career Guidance
+              </CardTitle>
+              <CardDescription>Choose your path efficiently</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4">
+                Offers a variety of Assessments to check your practical skills.
+              </p>
+              <Button variant="outline" className="flex items-center">
+                Buy course to get Assessments <ChevronRight className="ml-2" />
+              </Button>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <BookOpen className="mr-2 text-indigo-600" />
+                Gamification
+              </CardTitle>
+              <CardDescription>Streaks and Skill Badges</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="mb-4">
+                Learning in a innovative and competative way
+              </p>
+              <Button variant="outline" className="flex items-center">
+                During Live Class <ChevronRight className="ml-2" />
+              </Button>
+            </CardContent>
+          </Card>
+
         </section>
 
         <section className="text-center">
@@ -150,7 +202,7 @@ const LandingPage = () => {
           </h3>
           <p className="text-xl text-gray-600 mb-8">
             Join thousands of developers who have accelerated their careers with
-            CodeMaster
+            SkillBridge
           </p>
           <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full text-lg">
             Sign Up Now

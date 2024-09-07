@@ -3,6 +3,7 @@ const Course = require("../models/course");
 const Internship = require("../models/internship");
 const jwt = require("jsonwebtoken");
 const zod = require("zod");
+JWT_SECRET = "kartikeynamdev";
 
 //The userSchema in the authentication controller serves a crucial role in ensuring that the data
 //being handled during user registration or login is valid, consistent, and secure
@@ -28,7 +29,7 @@ const register = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET
+      JWT_SECRET
     );
     res.json({ token, msg: "User created successfully" }).status(201);
   } catch (error) {
@@ -38,12 +39,14 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
+    console.log("Login route is working")
     const { email, password } = req.body;
     const user = await User.findOne({ email, password });
     // if (!user) return res.status(404).json({ msg: "User not found" });
+    console.log(user)
     const token = jwt.sign(
       { id: user._id, role: user.role },
-      process.env.JWT_SECRET
+      JWT_SECRET
     );
     res.json({ token, message: "User login successfully" }).status(200);
     return;

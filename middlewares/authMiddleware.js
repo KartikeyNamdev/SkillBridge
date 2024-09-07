@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+JWT_SECRET = "kartikeynamdev"
 
 const protect = async (req, res, next) => {
   // let token;
@@ -8,7 +9,7 @@ const protect = async (req, res, next) => {
       const token = req.headers.authorization;
       const words = token.split(" "); // ["Bearer", "token"]
       const jwtToken = words[1]; // token
-      const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET);
+      const decoded = jwt.verify(jwtToken, JWT_SECRET);
       console.log(decoded);
 
       if (decoded) {

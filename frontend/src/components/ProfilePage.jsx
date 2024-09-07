@@ -3,13 +3,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 // import { Badge } from './ui/Badge';
 import Progress from './ui/Progress';
 import { Calendar, Book, BookOpen, Award, Flame } from 'lucide-react';
+import avatarr from "C:/SkillBridge/SkillBridge/frontend/avatarr.png"
 
 const ProfilePage = () => {
   // Mock data - replace with actual data from your backend
   const user = {
-    name: "Jane Doe",
-    email: "jane.doe@example.com",
-    avatar: "/api/placeholder/100/100",
+    name: "Kartikey Namdev",
+    email: "kartikeynamdev2003@example.com",
+    avatar: avatarr,
     streak: 15,
     skillBadges: ["Python", "React", "Node.js", "Data Structures"],
     watchedCourses: [
